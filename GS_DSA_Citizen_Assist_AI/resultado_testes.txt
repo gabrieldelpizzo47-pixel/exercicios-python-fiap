@@ -1,0 +1,16 @@
+test_atualizar (__main__.TestesListaEncadeada.test_atualizar) ... ok
+test_busca_por_id_e_texto (__main__.TestesListaEncadeada.test_busca_por_id_e_texto) ... ok
+test_campo_obrigatorio_vazio (__main__.TestesListaEncadeada.test_campo_obrigatorio_vazio) ... ok
+test_contagem_categoria (__main__.TestesListaEncadeada.test_contagem_categoria) ... ok
+test_entrada_numerica_invalida (__main__.TestesListaEncadeada.test_entrada_numerica_invalida) ... ok
+test_excluir_inicio_meio_fim_e_unico (__main__.TestesListaEncadeada.test_excluir_inicio_meio_fim_e_unico) ... ok
+test_id_zero_invalido (__main__.TestesListaEncadeada.test_id_zero_invalido) ... ok
+test_insercao_e_id_duplicado (__main__.TestesListaEncadeada.test_insercao_e_id_duplicado) ... ok
+test_lista_vazia_e_consulta_inexistente (__main__.TestesListaEncadeada.test_lista_vazia_e_consulta_inexistente) ... ok
+test_menu_opcao_invalida_lista_vazia_e_sair (__main__.TestesListaEncadeada.test_menu_opcao_invalida_lista_vazia_e_sair) ... ok
+test_selection_sort_e_integridade_dos_ids (__main__.TestesListaEncadeada.test_selection_sort_e_integridade_dos_ids) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.002s
+
+OK
