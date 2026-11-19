@@ -1,0 +1,11 @@
+variavel,valor_referencia,unidade,origem,natureza,observacao
+lampadas,10,unidades,cenario didatico,hipotetico,numero de pontos de iluminacao
+potenciaAtual,60,W por lampada,cenario didatico,hipotetico,potencia de lampada de referencia
+potenciaLed,9,W por lampada,cenario didatico,hipotetico,comparar luminosidade lm antes de substituir
+horas,4,horas por dia,cenario didatico,hipotetico,tempo de uso assumido
+dias,30,dias por mes,cenario didatico,hipotetico,periodo comum de comparacao
+tarifa,1.00,BRL por kWh,cenario didatico,hipotetico,nao e tarifa real ou cotacao
+precoLed,12.00,BRL por unidade,cenario didatico,hipotetico,nao e preco verificado
+solPleno,4.5,horas equivalentes por dia,cenario didatico,hipotetico,substituir por dados locais INPE
+fatorDesempenho,0.75,adimensional,cenario didatico,hipotetico,perdas incluidas em indicador geral
+precoSolarPorKWp,5500,BRL por kWp,cenario didatico,hipotetico,aproximacao linear irrealista em projetos pequenos

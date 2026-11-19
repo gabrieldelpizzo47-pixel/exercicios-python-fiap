@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Citizen Assist AI: orientações de eficiência energética e energia solar para cidadãos, com cálculos e referências.">
+  <title>Citizen Assist AI | Energia consciente</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="calculos.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topbar">
+    <div class="shell top-inner">
+      <div class="logo" aria-hidden="true">◈</div>
+      <div><strong>Citizen Assist AI</strong><small>Global Solution 2026.2 · Energias Renováveis</small></div>
+      <span class="top-pill">Protótipo educacional</span>
+    </div>
+  </header>
+  <main id="conteudo" class="shell">
+    <section class="intro">
+      <div class="eyebrow">ENERGIA & SUSTENTABILIDADE <span>·</span> ODS 7, 11 e 12</div>
+      <h1>Decisões melhores começam<br><em>com energia bem explicada.</em></h1>
+      <p>Compare o consumo de iluminação de uma residência, a troca por LED e uma alternativa com fonte renovável. O assistente explica os cálculos, custos e limitações em linguagem simples.</p>
+    </section>
+    <section class="columns" aria-label="Simulador de consumo e resultados">
+      <div class="panel form-panel">
+        <div class="panel-head"><div><span class="step">01 / CENÁRIO</span><h2>Conte sobre sua iluminação</h2></div><span class="icon-round" aria-hidden="true">↗</span></div>
+        <form id="form-energia" novalidate>
+          <div class="input-grid">
+            <label>Quantidade de lâmpadas <input id="lampadas" name="lampadas" type="number" min="1" max="200" step="1" required></label>
+            <label>Potência atual (W) <input id="potenciaAtual" name="potenciaAtual" type="number" min="1" max="1000" step="1" required></label>
+            <label>Potência da LED (W) <input id="potenciaLed" name="potenciaLed" type="number" min="1" max="1000" step="1" required></label>
+            <label>Horas de uso por dia <input id="horas" name="horas" type="number" min="0.1" max="24" step="0.1" required></label>
+            <label>Dias de uso por mês <input id="dias" name="dias" type="number" min="1" max="31" step="1" required></label>
+            <label>Tarifa assumida (R$/kWh) <input id="tarifa" name="tarifa" type="number" min="0.01" max="10" step="0.01" required></label>
+          </div>
+          <details class="advanced"><summary>Ajustar premissas de investimento e sol</summary>
+            <div class="input-grid advanced-grid">
+              <label>Preço unitário LED (R$) <input id="precoLed" name="precoLed" type="number" min="0" max="1000" step="1" required></label>
+              <label>Sol pleno (h/dia) <input id="solPleno" name="solPleno" type="number" min="1" max="8" step="0.1" required></label>
+              <label>Fator de desempenho (0–1) <input id="fatorDesempenho" name="fatorDesempenho" type="number" min="0.3" max="1" step="0.01" required></label>
+              <label>Custo solar hipotético (R$/kWp) <input id="precoSolarPorKWp" name="precoSolarPorKWp" type="number" min="100" max="30000" step="100" required></label>
+            </div>
+          </details>
+          <p class="hint">Os valores iniciais são <strong>hipóteses didáticas editáveis</strong>, não cotações ou medições reais.</p>
+          <div id="erro" role="alert" class="erro" hidden></div>
+          <div class="actions"><button type="submit" class="primary">Atualizar análise <span aria-hidden="true">→</span></button><button type="button" id="restaurar" class="secondary">Restaurar exemplo</button></div>
+        </form>
+      </div>
+      <div class="panel result-panel">
+        <div class="panel-head"><div><span class="step">02 / RESULTADO</span><h2>Comparação do mesmo uso</h2></div><span class="icon-round sun" aria-hidden="true">☀</span></div>
+        <div class="hero-number"><span>Consumo atual de iluminação</span><div><strong id="kwhAtual">72,0</strong> <span>kWh/mês</span></div><small id="valorAtual">Custo aproximado do consumo: R$ 72,00/mês</small></div>
+        <div class="compare">
+          <div class="comp-head"><span>Alternativa</span><span>Energia da rede / mês</span></div>
+          <div class="comp-row"><div><strong>Atual</strong><small>Lâmpadas atuais</small></div><div class="bar-wrap"><div class="bar bg" style="width:100%"></div><span id="baseValor">72,0 kWh</span></div></div>
+          <div class="comp-row"><div><strong>1 · Lâmpadas LED</strong><small>Eficiência energética</small></div><div class="bar-wrap"><div id="ledBar" class="bar green" style="width:15%"></div><span id="ledValor">10,8 kWh</span></div></div>
+          <div class="comp-row"><div><strong>2 · Energia solar</strong><small>Geração renovável teórica*</small></div><div class="bar-wrap"><div id="solarBar" class="bar amber" style="width:0%"></div><span id="solarValor">0,0 kWh*</span></div></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat"><span>Economia com LED</span><strong id="economiaLed">R$ 61,20/mês</strong><small id="economiaLedPercentual">85% menos energia</small></div>
+          <div class="stat"><span>Investimento em LEDs</span><strong id="investimentoLed">R$ 120,00</strong><small id="retornoLed">Retorno simples: 2 meses</small></div>
+          <div class="stat"><span>Solar para o consumo atual</span><strong id="solarPotencia">0,71 kWp</strong><small id="solarGeracao">Geração teórica: 72,0 kWh/mês</small></div>
+          <div class="stat"><span>Solar: custo hipotético</span><strong id="investimentoSolar">R$ 3.911,00</strong><small id="retornoSolar">Teto teórico: R$ 72,00/mês</small></div>
+        </div>
+        <p class="disclaimer">*A barra solar indica <strong>demanda líquida teórica compensada</strong> para essa iluminação, NÃO uma fatura zerada. A compensação real depende de regras da ANEEL, distribuidora, tributos, encargos, perfil de uso e instalação. O sistema foi dimensionado só para fins de comparação.</p>
+      </div>
+    </section>
+    <section class="assistant-grid">
+      <div class="panel assistant-panel">
+        <span class="step">03 / ORIENTAÇÕES</span><h2>Pergunte ao Citizen Assist</h2>
+        <p>Faça uma pergunta ou escolha um assunto. O assistente usa regras e os cálculos acima; ele não inventa respostas nem usa IA generativa.</p>
+        <div class="quick" aria-label="Perguntas sugeridas"><button type="button" data-question="Quanto economizo com LED?">Economia com LED</button><button type="button" data-question="Como funciona a energia solar?">Energia solar</button><button type="button" data-question="Qual a melhor alternativa?">Qual escolher?</button><button type="button" data-question="Quais são os limites?">Limitações</button><button type="button" data-question="Quais são as fontes?">Fontes</button></div>
+        <form id="form-pergunta" class="ask-form"><label class="sr-only" for="pergunta">Sua dúvida sobre energia</label><input id="pergunta" type="text" maxlength="220" placeholder="Ex.: quanto custa trocar minhas lâmpadas?" required><button type="submit" class="primary">Perguntar</button></form>
+        <div id="resposta" class="answer" aria-live="polite" aria-atomic="true"><span class="answer-label">RESPOSTA DO ASSISTENTE</span><p>Digite uma pergunta para receber uma orientação calculada com o cenário atual.</p></div>
+      </div>
+      <div class="panel insights-panel"><span class="step">04 / DECISÃO RESPONSÁVEL</span><h2>O que considerar?</h2>
+        <div class="insight"><span class="bullet">1</span><div><strong>Eficiência primeiro</strong><p>Trocar lâmpadas ineficientes reduz consumo e evita desperdício. Compare também a luminosidade (lúmens), não apenas watts.</p></div></div>
+        <div class="insight"><span class="bullet">2</span><div><strong>Renovável com análise local</strong><p>O solar depende de radiação, espaço, orientação e sombreamento. Uma estimativa teórica não substitui orçamento ou projeto.</p></div></div>
+        <div class="insight"><span class="bullet">3</span><div><strong>Impactos ambientais</strong><p>LEDs exigem menos eletricidade para a mesma iluminação adequada. Painéis solares geram energia renovável, mas sua fabricação, instalação e descarte também têm impactos.</p></div></div>
+        <div class="insight"><span class="bullet">4</span><div><strong>Fontes e transparência</strong><p>Consulte ANEEL, INPE, MME/Procel e Inmetro nos links de referência. Todos os preços da simulação devem ser substituídos por dados locais antes de uma decisão real.</p></div></div>
+      </div>
+    </section>
+    <section class="sources"><div><span class="step">FONTES VERIFICÁVEIS</span><h2>Conhecimento público, com limites claros.</h2></div><div class="source-list"><a href="https://www.gov.br/aneel/pt-br/assuntos/geracao/geracao-distribuida" target="_blank" rel="noopener noreferrer">ANEEL · Geração distribuída e compensação ↗</a><a href="https://www.gov.br/pt-br/servicos/obter-dados-do-atlas-brasileiro-de-energia-solar-atlas-solar" target="_blank" rel="noopener noreferrer">INPE · Atlas Brasileiro de Energia Solar ↗</a><a href="https://www.gov.br/mme/pt-br/assuntos/ee/procel" target="_blank" rel="noopener noreferrer">MME · Procel e eficiência energética ↗</a><a href="https://www.gov.br/inmetro/pt-br/acesso-a-informacao/perguntas-frequentes/avaliacao-da-conformidade/lampadas-e-luminarias-led-portaria-inmetro-no-231-2026-consumidores/para-pagar-uma-conta-de-energia-mais-barata-devo-comprar-lampadas-e-luminarias-de-luz-201cfria201d" target="_blank" rel="noopener noreferrer">Inmetro · Eficiência luminosa (lm/W) ↗</a></div></section>
+  </main>
+  <footer class="shell foot">Citizen Assist AI · Global Solution 2026.2 · FIAP · <strong>Simulação educacional, não consultoria nem serviço oficial.</strong></footer>
+</body>
+</html>
