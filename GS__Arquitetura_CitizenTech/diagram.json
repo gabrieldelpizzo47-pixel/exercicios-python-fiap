@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "CitizenTech - Global Solution FIAP",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 130, "left": 200, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "sensor", "top": -40, "left": 155, "attrs": { "distance": "100" } },
+    { "type": "wokwi-led", "id": "verde", "top": 95, "left": 465, "attrs": { "color": "green", "label": "NORMAL" } },
+    { "type": "wokwi-led", "id": "amarelo", "top": 170, "left": 465, "attrs": { "color": "yellow", "label": "ATENCAO" } },
+    { "type": "wokwi-led", "id": "vermelho", "top": 245, "left": 465, "attrs": { "color": "red", "label": "PERIGO" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 130, "left": 390, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 205, "left": 390, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 280, "left": 390, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 355, "left": 475, "attrs": { "volume": "0.3" } }
+  ],
+  "connections": [
+    [ "sensor:VCC", "pico:VBUS", "red", [ "v0" ] ],
+    [ "sensor:GND", "pico:GND.1", "black", [ "v0" ] ],
+    [ "sensor:TRIG", "pico:GP2", "green", [ "v0" ] ],
+    [ "sensor:ECHO", "pico:GP3", "blue", [ "v0" ] ],
+
+    [ "pico:GP13", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "verde:A", "green", [ "v0" ] ],
+    [ "verde:C", "pico:GND.2", "black", [ "v0" ] ],
+
+    [ "pico:GP14", "r2:1", "gold", [ "v0" ] ],
+    [ "r2:2", "amarelo:A", "gold", [ "v0" ] ],
+    [ "amarelo:C", "pico:GND.3", "black", [ "v0" ] ],
+
+    [ "pico:GP15", "r3:1", "red", [ "v0" ] ],
+    [ "r3:2", "vermelho:A", "red", [ "v0" ] ],
+    [ "vermelho:C", "pico:GND.4", "black", [ "v0" ] ],
+
+    [ "pico:GP16", "buzzer:2", "orange", [ "v0" ] ],
+    [ "buzzer:1", "pico:GND.5", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
