@@ -1,0 +1,15 @@
+GLOBAL SOLUTION 2026.2 — SOLUÇÕES EM ENERGIAS RENOVÁVEIS E SUSTENTÁVEIS
+Projeto: Citizen Assist AI — Energia Consciente
+
+INTEGRANTES:
+Patrick Fernandes Martins Pais — RM 572899
+Gabriel Del Pizzo Pintor — RM 570436
+Ian Rodrigues Martins — RM 570540
+
+LINK DO REPOSITÓRIO NO GITHUB:
+[COLE AQUI O LINK PÚBLICO REAL]
+
+LINK DO VÍDEO TÉCNICO NO YOUTUBE (NÃO LISTADO; ATÉ 3 MINUTOS):
+[COLE AQUI O LINK REAL]
+
+ATENÇÃO: substitua os campos entre colchetes antes de entregar. O enunciado SERS exige enviar APENAS UM ARQUIVO .txt no Portal da FIAP. Os demais arquivos ficam no GitHub.
